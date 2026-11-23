@@ -1,0 +1,8 @@
+{
+  "name": "LedgerPulse",
+  "idea": "A multi-tenant B2B SaaS invoicing and expense platform with RBAC team permissions, Stripe subscription billing, webhooks, PostgreSQL storage, and an AI receipt categorization agent.",
+  "archetype": "web-saas",
+  "lifecycle": "production",
+  "teamSize": "small",
+  "stack": ["TypeScript", "Next.js", "PostgreSQL", "Stripe", "Vercel AI SDK"]
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://md-structure.local/schemas/blueprint.schema.json",
+  "title": "MD-Structure Architecture Blueprint",
+  "description": "Deterministic output of planArchitecture / md-structure analyze / md_analyze_idea.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "project",
+    "summary",
+    "whyThisStructure",
+    "authoringPhases",
+    "documents",
+    "excludedDocuments",
+    "ambiguities",
+    "needsDiscovery"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "project": {
+      "type": "object",
+      "required": ["name", "slug", "archetype", "tier", "riskLevel", "capabilities"],
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "idea": { "type": "string" },
+        "archetype": { "type": "object" },
+        "tier": { "type": "object" },
+        "riskLevel": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "capabilities": { "type": "array" },
+        "stack": { "type": "array", "items": { "type": "string" } },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["totalDocuments", "excludedDocuments", "byLoadPolicy", "byLayer", "byPriority", "tokenLedger"],
+      "properties": {
+        "totalDocuments": { "type": "integer", "minimum": 1 },
+        "excludedDocuments": { "type": "integer", "minimum": 0 },
+        "recommendedRangeForTier": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "integer" }
+        },
+        "byLoadPolicy": { "type": "object" },
+        "byLayer": { "type": "object" },
+        "byPriority": { "type": "object" },
+        "tokenLedger": {
+          "type": "object",
+          "required": [
+            "alwaysOnTargetTokens",
+            "alwaysOnMaxTokens",
+            "alwaysOnTierLimit",
+            "totalTargetTokens",
+            "totalMaxTokens",
+            "alwaysOnWithinLimit"
+          ]
+        }
+      }
+    },
+    "whyThisStructure": {
+      "type": "object",
+      "required": ["headline", "contextEngineeringPrinciple", "antiBloatGuard"],
+      "properties": {
+        "headline": { "type": "string" },
+        "contextEngineeringPrinciple": { "type": "string" },
+        "antiBloatGuard": { "type": "string" }
+      }
+    },
+    "authoringPhases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["phase", "name", "description", "docIds"],
+        "properties": {
+          "phase": { "type": "integer" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "docIds": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "documents": { "type": "array" },
+    "excludedDocuments": { "type": "array" },
+    "ambiguities": { "type": "array" },
+    "needsDiscovery": { "type": "boolean" }
+  }
+}

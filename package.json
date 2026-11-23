@@ -1,0 +1,57 @@
+{
+  "name": "md-structure",
+  "version": "1.0.0",
+  "author": "Ayazelrico",
+  "description": "Agent-native local architecture decision engine, Markdown scaffolding system, MCP server, and context-governance auditor.",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./types/index.d.ts",
+  "bin": {
+    "md-structure": "./bin/md-structure.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./mcp": "./src/mcp/server.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "schemas/",
+    "agent-kit/",
+    "examples/",
+    "types/",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "scripts": {
+    "start": "node ./bin/md-structure.js",
+    "mcp": "node ./bin/md-structure.js mcp",
+    "test": "node --test test/*.test.js",
+    "test:verbose": "node --test --test-reporter=spec test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "ai-agent",
+    "context-engineering",
+    "markdown-architecture",
+    "agents-md",
+    "mcp-server",
+    "scaffolding",
+    "software-architecture",
+    "spec-driven-development"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayazelrico/MD-Structure.git"
+  },
+  "homepage": "https://github.com/ayazelrico/MD-Structure#readme",
+  "bugs": {
+    "url": "https://github.com/ayazelrico/MD-Structure/issues"
+  },
+  "license": "MIT"
+}

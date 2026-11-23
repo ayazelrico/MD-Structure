@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "md-structure": {
+      "command": "node",
+      "args": [
+        "/ABSOLUTE/PATH/TO/MD-Structure/bin/md-structure.js",
+        "mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "MedFlow Enterprise Platform",
+  "idea": "A HIPAA-compliant enterprise multi-agent clinical triage monorepo platform with SSO/RBAC, multi-tenant hospital workspaces, EHR legacy migration, background queues, realtime clinician dashboards, and immutable audit logs.",
+  "archetype": "monorepo-platform",
+  "lifecycle": "enterprise",
+  "teamSize": "org",
+  "capabilities": [
+    "ai-llm-agents",
+    "auth-rbac",
+    "multi-tenant",
+    "compliance-pii",
+    "database-persistence",
+    "public-api",
+    "complex-ui",
+    "state-workflows",
+    "realtime-sync",
+    "background-jobs",
+    "external-integrations",
+    "migration-legacy",
+    "self-hosted-infra",
+    "high-throughput",
+    "complex-domain"
+  ],
+  "stack": ["TypeScript", "Python", "PostgreSQL", "Kafka", "Kubernetes"]
+}

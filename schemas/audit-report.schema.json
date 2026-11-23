@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://md-structure.local/schemas/audit-report.schema.json",
+  "title": "MD-Structure Audit Report",
+  "description": "Structured readiness and governance audit report for an MD-Structure workspace.",
+  "type": "object",
+  "required": [
+    "workspaceDir",
+    "hasManifest",
+    "readinessScore",
+    "readyForImplementation",
+    "status",
+    "summary",
+    "documents",
+    "issues",
+    "remediationPlan"
+  ],
+  "properties": {
+    "workspaceDir": { "type": "string" },
+    "hasManifest": { "type": "boolean" },
+    "readinessScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "readyForImplementation": { "type": "boolean" },
+    "status": { "type": "string", "enum": ["uninitialized", "failing", "in-progress", "ready"] },
+    "summary": {
+      "type": "object",
+      "required": [
+        "totalDeclared",
+        "existing",
+        "approved",
+        "draft",
+        "missing",
+        "totalOpenDirectives",
+        "totalTokens",
+        "alwaysOnTokens",
+        "errorCount",
+        "warningCount"
+      ],
+      "properties": {
+        "totalDeclared": { "type": "integer" },
+        "existing": { "type": "integer" },
+        "approved": { "type": "integer" },
+        "draft": { "type": "integer" },
+        "missing": { "type": "integer" },
+        "totalOpenDirectives": { "type": "integer" },
+        "totalTokens": { "type": "integer" },
+        "alwaysOnTokens": { "type": "integer" },
+        "errorCount": { "type": "integer" },
+        "warningCount": { "type": "integer" }
+      }
+    },
+    "documents": { "type": "array" },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "code", "path", "message"],
+        "properties": {
+          "severity": { "type": "string", "enum": ["error", "warning"] },
+          "code": { "type": "string" },
+          "docId": { "type": "string" },
+          "path": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "remediationPlan": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

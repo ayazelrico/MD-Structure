@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://md-structure.local/schemas/intake-profile.schema.json",
+  "title": "MD-Structure Intake Profile",
+  "description": "Structured representation of a user's project idea collected by an AI agent.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable project name."
+    },
+    "idea": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Natural-language description of what the project does."
+    },
+    "archetype": {
+      "type": "string",
+      "enum": [
+        "web-saas",
+        "api-backend",
+        "ai-agent-system",
+        "cli-tool",
+        "library-sdk",
+        "mobile-app",
+        "desktop-app",
+        "data-pipeline",
+        "monorepo-platform",
+        "browser-extension"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["T0", "T1", "T2", "T3"],
+      "description": "Optional explicit complexity tier override."
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": ["prototype", "mvp", "production", "enterprise"]
+    },
+    "teamSize": {
+      "type": "string",
+      "enum": ["solo", "small", "org"]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "database-persistence",
+          "public-api",
+          "auth-rbac",
+          "multi-tenant",
+          "payments-billing",
+          "ai-llm-agents",
+          "complex-ui",
+          "state-workflows",
+          "realtime-sync",
+          "external-integrations",
+          "background-jobs",
+          "compliance-pii",
+          "high-throughput",
+          "cli-interface",
+          "sdk-surface",
+          "plugin-extensibility",
+          "offline-local-first",
+          "self-hosted-infra",
+          "migration-legacy",
+          "monorepo",
+          "complex-domain"
+        ]
+      }
+    },
+    "excludeCapabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "stack": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "includeDocs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "excludeDocs": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["idea"],
+  "additionalProperties": false
+}

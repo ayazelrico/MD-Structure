@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://md-structure.local/schemas/manifest.schema.json",
+  "title": "MD-Structure Workspace Manifest",
+  "description": "Machine-readable lockfile written to md-structure.manifest.json in scaffolded repositories.",
+  "type": "object",
+  "required": ["schemaVersion", "generator", "generatedAt", "project", "documents", "excludedDocuments"],
+  "properties": {
+    "schemaVersion": { "type": "string" },
+    "generator": { "const": "md-structure" },
+    "createdBy": { "type": "string" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "docsDir": { "type": "string" },
+    "shims": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["claude", "cursor", "copilot", "windsurf"] }
+    },
+    "project": {
+      "type": "object",
+      "required": ["name", "slug", "archetype", "tier", "riskLevel", "capabilities"],
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "idea": { "type": "string" },
+        "archetype": { "type": "string" },
+        "tier": { "type": "string", "enum": ["T0", "T1", "T2", "T3"] },
+        "riskLevel": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "capabilities": { "type": "array", "items": { "type": "string" } },
+        "stack": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["order", "id", "title", "path", "layer", "loadPolicy", "tokenBudget", "dependsOn", "authority"],
+        "properties": {
+          "order": { "type": "integer", "minimum": 1 },
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "path": { "type": "string" },
+          "layer": { "type": "string" },
+          "priority": { "type": "string", "enum": ["critical", "recommended", "conditional"] },
+          "loadPolicy": { "type": "string", "enum": ["always", "on-demand", "task-scoped", "reference"] },
+          "tokenBudget": {
+            "type": "object",
+            "required": ["min", "target", "max"],
+            "properties": {
+              "min": { "type": "integer" },
+              "target": { "type": "integer" },
+              "max": { "type": "integer" }
+            }
+          },
+          "dependsOn": { "type": "array", "items": { "type": "string" } },
+          "authority": { "type": "string" },
+          "selectionReasons": { "type": "array", "items": { "type": "string" } },
+          "initialChecksum": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "excludedDocuments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "path", "skipReason"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "path": { "type": "string" },
+          "layer": { "type": "string" },
+          "skipReason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

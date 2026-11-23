@@ -1,0 +1,8 @@
+{
+  "name": "EnvGuard CLI",
+  "idea": "A lightweight local CLI tool that scans project directories for leaked secrets and validates .env schemas against a contract file.",
+  "archetype": "cli-tool",
+  "lifecycle": "prototype",
+  "teamSize": "solo",
+  "stack": ["Node.js", "Zero external dependencies"]
+}
